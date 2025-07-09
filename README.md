@@ -1,7 +1,7 @@
 # Proyecto_2_Equipo_3
 scrum = Andres
 
-API = Flask
+API = [Flask](https://flask.palletsprojects.com/en/stable/)
 
 DB = https://www.sqlalchemy.org/
 
