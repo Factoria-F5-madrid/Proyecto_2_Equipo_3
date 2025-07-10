@@ -7,7 +7,7 @@ DB = https://www.sqlalchemy.org/
 
 negocio = comida
 
-gestion del proyecto [aquí](https://github.com/orgs/Factoria-F5-madrid/projects/22)
+gestion del proyecto [aquí](https://github.com/orgs/Factoria-F5-madrid/projects/25)
 
 
 # 🚀 Proyecto: Sistema de Gestión Personalizado
