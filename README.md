@@ -1,5 +1,6 @@
 # Proyecto_2_Equipo_3
 Scrum Master = Andrés Lázaro
+
 Product Owner = Ignacio Castillo
 
 API = [Django](https://www.djangoproject.com/)
