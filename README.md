@@ -1,9 +1,8 @@
 # Proyecto_2_Equipo_3
-scrum = Andres
+Scrum Master = Andrés Lázaro
+Product Owner = Ignacio Castillo
 
-API = [Flask](https://flask.palletsprojects.com/en/stable/)
-
-DB = https://www.sqlalchemy.org/
+API = [Django](https://www.djangoproject.com/)
 
 negocio = comida
 
