@@ -3,7 +3,7 @@ Scrum Master = Andrés Lázaro
 
 Product Owner = Ignacio Castillo
 
-API = [Django](https://www.djangoproject.com/)
+API = [Django](https://www.djangoproject.com/) version 5.2.4
 
 negocio = comida
 
