@@ -16,7 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+""" When DEBUG = False (in production), Django does not serve media files. This is because:
+Django’s built-in server is not designed to efficiently or securely serve static/media files in production.
+In production, you should use a proper web server (like Nginx or Apache) to serve files from MEDIA_ROOT.
+ """
+
+if settings.DEBUG:# allows Django to serve uploaded images during development.
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
