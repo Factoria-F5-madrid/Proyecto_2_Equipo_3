@@ -82,13 +82,13 @@ WSGI_APPLICATION = 'Food5.wsgi.application'
     }
 } """
 DATABASES = {
-    'default': {
+     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'food5_db',
-        'USER': 'dbuser',
+        'NAME': 'postgres',
+        'USER': 'postgres.vvuuskttcvvmnvynxuqx',
         'PASSWORD': 'dbpass',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'HOST': 'aws-0-eu-north-1.pooler.supabase.com',
+        'PORT': '6543',  
     }
 }
 
