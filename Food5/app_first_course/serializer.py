@@ -6,4 +6,4 @@ from .models import FirstCourse
 class FirstCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = FirstCourse
-        fields = '__all__'
+        fields = ['name', 'calories', 'vegan', 'gluten_free', 'retail_price', 'picture']
