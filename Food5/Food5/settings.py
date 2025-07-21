@@ -76,20 +76,14 @@ WSGI_APPLICATION = 'Food5.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-""" DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-} """
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres.vvuuskttcvvmnvynxuqx',
-        'PASSWORD': 'dbpass',
-        'HOST': 'aws-0-eu-north-1.pooler.supabase.com',
-        'PORT': '6543',  
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Cambia el motor a postgresql_psycopg2
+        'NAME': os.getenv('SUPABASE_DB_NAME'),          # Nombre de tu base de datos
+        'USER': os.getenv('SUPABASE_DB_USER'),          # Usuario de tu base de datos
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # Contraseña del usuario
+        'HOST': os.getenv('DB_HOST'),          # Dirección del servidor de la base de datos (e.g., 'localhost')
+        'PORT': os.getenv('DB_PORT'),          # Puerto de la base de datos (por defecto es 3306 para MySQL)
     }
 }
 
