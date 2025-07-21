@@ -1,11 +1,10 @@
-# app_dessert/urls.py
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import DessertViewSet
-
-router = DefaultRouter()
-router.register(r'desserts', DessertViewSet, basename='dessert')
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('desserts/', views.list_desserts, name='list_desserts'),
+    path('desserts/create/', views.create_dessert, name='create_dessert'),
+    path('desserts/<int:pk>/', views.detail_dessert, name='detail_dessert'),
+    path('desserts/<int:pk>/edit/', views.edit_dessert, name='edit_dessert'),
+    path('desserts/<int:pk>/delete/', views.delete_dessert, name='delete_dessert'),
 ]
