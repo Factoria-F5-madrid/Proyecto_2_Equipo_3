@@ -45,8 +45,9 @@ class FirstCourseAPITest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(any(fc['name'] == 'crema-de-calabaza' for fc in response.data))
 
-    """ def test_crear_plato(self):
+    def test_crear_plato(self):
         url = reverse('crear_plato')
+        #image = SimpleUploadedFile("crema-de-calabaza-1.jpg", b"file_content", content_type="image/jpeg")
         data = {
             'name': 'sopa de tomate',
             'calories': 120,
@@ -54,19 +55,20 @@ class FirstCourseAPITest(TestCase):
             'gluten_free': True,
             'purchase_price': 2.50,
             'retail_price': 4.00,
-            'picture': self.image
+            #'picture': image
         }
         response = self.client.post(url, data, format='multipart')
+        #print(response.data)
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.data['name'], 'sopa de tomate')
-    """
+
     def test_detalle_plato_get(self):
         url = reverse('detalle_plato', args=[self.first_course.pk])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data['name'], 'crema-de-calabaza')
 
-    """ def test_detalle_plato_put(self):
+    def test_detalle_plato_put(self):
         url = reverse('detalle_plato', args=[self.first_course.pk])
         data = {
             'name': 'crema actualizada',
@@ -74,12 +76,12 @@ class FirstCourseAPITest(TestCase):
             'vegan': False,
             'gluten_free': False,
             'retail_price': 6.00,
-            'picture': self.image
+            #'picture': self.image
         }
         response = self.client.put(url, data, format='multipart')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data['name'], 'crema actualizada')
-    """
+
     def test_detalle_plato_delete(self):
         url = reverse('detalle_plato', args=[self.first_course.pk])
         response = self.client.delete(url)
