@@ -1,7 +1,9 @@
 from django.db import models
-from Food5.Food5_app.models import Dish
+from Food5_app.models import Dish
 
 # Create your models here.
 class SecondCourse(Dish):
-    
-    pass
+
+    class Meta:
+        db_table = 'second_course'
+        managed = False  # Set to False if you want to manage the table manually
