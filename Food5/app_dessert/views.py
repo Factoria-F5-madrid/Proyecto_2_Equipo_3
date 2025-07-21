@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Dessert
+from .serializer import DessertSerializer
 
-# Create your views here.
+class DessertViewSet(viewsets.ModelViewSet):
+    queryset = Dessert.objects.all()
+    serializer_class = DessertSerializer

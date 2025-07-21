@@ -15,7 +15,7 @@ class Dish(models.Model):
 
 class Dessert(Dish):
     class Meta:
-        db_table = 'desserts'  # Esto enlaza con la tabla existente
+        db_table = 'Food5_app_dessert'  # Esto enlaza con la tabla existente
         managed = False
 
 
