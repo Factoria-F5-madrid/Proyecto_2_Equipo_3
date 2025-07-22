@@ -32,11 +32,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
-    'app_Bread',
-    'app_dessert',
-    'app_first_course',
-    'app_second_course',
-    'app_second_course',
+    'app_drink',
     'rest_framework',
     'Food5_app',
     'django.contrib.admin',
@@ -45,6 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app_Bread',
+    'app_first_course',
+    'app_dessert',
+    'app_customer',
+    'app_menu'
 ]
 
 MIDDLEWARE = [
@@ -80,13 +81,6 @@ WSGI_APPLICATION = 'Food5.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-""" DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-} """
-# os -> This module provides a portable way of using operating system dependent functionality like reading or writing to the file system.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Cambia el motor a postgresql_psycopg2

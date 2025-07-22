@@ -21,11 +21,16 @@ from django.conf.urls.static import static  # Import static to serve media files
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('second_course/', include('app_second_course.urls')),  # Include URLs from the app_second_course application
+    path('api/', include('app_drink.urls')),
+    path('bread/', include('app_Bread.urls')),
+    path('first_course/', include('app_first_course.urls')),
+    path('dessert/', include('app_dessert.urls')),
+    path('customer/', include('app_customer.urls')),
+    path('menu/', include('app_menu.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-]
 
-""" When DEBUG = False (in production), Django does not serve media files. This is because:
+""" When DEBUG = False (in production), Django does not serve media files. This is because:path('customer/', include('app_customer.urls'))
 Django’s built-in server is not designed to efficiently or securely serve static/media files in production.
 In production, you should use a proper web server (like Nginx or Apache) to serve files from MEDIA_ROOT.
  """

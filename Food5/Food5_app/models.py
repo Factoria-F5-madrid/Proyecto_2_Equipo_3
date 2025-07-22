@@ -28,6 +28,7 @@ class Menu(models.Model):
     dessert = models.ForeignKey('app_dessert.Dessert', on_delete=models.CASCADE)
     drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
     bread = models.ForeignKey('app_Bread.Bread', on_delete=models.CASCADE)
+    bread = models.ForeignKey('app_Bread.Bread', on_delete=models.CASCADE)
 
     @property #These are not stored in the database, but are calculated on the fly whenever you access them. This ensures the values are always up-to-date, reflecting any changes to the related dishes or menus
     def purchase_price(self):
