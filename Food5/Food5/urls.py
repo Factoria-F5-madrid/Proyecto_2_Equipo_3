@@ -17,16 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-from django.conf.urls.static import static 
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('app_drink.urls')),
     path('bread/', include('app_Bread.urls')),
     path('first_course/', include('app_first_course.urls')),
     path('dessert/', include('app_dessert.urls')),
     path('customer/', include('app_customer.urls')),
-    path('menu/', include('app_menu.urls'))
-]
+    path('menu/', include('app_menu.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 """ When DEBUG = False (in production), Django does not serve media files. This is because:path('customer/', include('app_customer.urls'))
