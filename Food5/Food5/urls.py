@@ -16,14 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin    # Import admin to manage the Django admin interface
 from django.urls import path, include   # Import include to include other URL configurations
-from rest_framework.routers import DefaultRouter # Import DefaultRouter to create a router for your API
 from django.conf import settings  
 from django.conf.urls.static import static  # Import static to serve media files during development
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('app_second_course.urls')),  # Include URLs from the app_second_course application
-    path('api/', include('Food5_app.urls')),  # Include URLs from the Food
+    path('second_course/', include('app_second_course.urls')),  # Include URLs from the app_second_course application
+
 ]
 
 """ When DEBUG = False (in production), Django does not serve media files. This is because:

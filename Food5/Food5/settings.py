@@ -31,9 +31,11 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
-
 INSTALLED_APPS = [
-
+    'app_Bread',
+    'app_dessert',
+    'app_first_course',
+    'app_second_course',
     'app_second_course',
     'rest_framework',
     'Food5_app',

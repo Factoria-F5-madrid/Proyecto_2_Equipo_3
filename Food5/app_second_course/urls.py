@@ -1,11 +1,8 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import SecondCourseViewSet
-
-# ✅ Router automatically creates URLs for your ViewSet
-router = DefaultRouter()
-router.register(r'second-courses', SecondCourseViewSet)
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('', include(router.urls)),  # Include router-generated URLs
+    path('', views.list_second_course, name='list_second_course'),
+    path('create/', views.create_second_course, name='create_second_course'),
+    path('<int:pk>/', views.detail_second_course, name='detail_second_course'),
 ]
