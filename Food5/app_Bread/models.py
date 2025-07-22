@@ -1,3 +1,5 @@
-from django.db import models
+from Food5_app.models import Dish
 
-# Create your models here.
+# Concrete classes inheriting from Dish
+class Bread(Dish):
+    pass
