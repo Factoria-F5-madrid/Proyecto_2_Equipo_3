@@ -13,10 +13,6 @@ class Dish(models.Model):
     class Meta:
         abstract = True
 
-# Concrete classes inheriting from Dish
-class FirstCourse(Dish):
-    pass
-
 class SecondCourse(Dish):
     pass
 
@@ -35,7 +31,7 @@ class Customer(models.Model):
     email = models.EmailField(unique=True)
 
 class Menu(models.Model):
-    first_course = models.ForeignKey(FirstCourse, on_delete=models.CASCADE)
+    first_course = models.ForeignKey('app_first_course.FirstCourse', on_delete=models.CASCADE)
     second_course = models.ForeignKey(SecondCourse, on_delete=models.CASCADE)
     dessert = models.ForeignKey(Dessert, on_delete=models.CASCADE)
     drink = models.ForeignKey(Drink, on_delete=models.CASCADE)

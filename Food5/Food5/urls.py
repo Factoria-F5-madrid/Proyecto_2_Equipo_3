@@ -15,13 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('first_course/', include('app_first_course.urls')),
+
 ]
+
 
 """ When DEBUG = False (in production), Django does not serve media files. This is because:
 Django’s built-in server is not designed to efficiently or securely serve static/media files in production.
