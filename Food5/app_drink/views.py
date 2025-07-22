@@ -10,8 +10,8 @@ from django.shortcuts import get_object_or_404
 
 @api_view(['GET'])
 def list_drink(request):
-    drink = Drink.objects.all()
-    serializer = DrinkSerializer(drink, many=True)
+    drinks = Drink.objects.all()
+    serializer = DrinkSerializer(drinks, many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])
@@ -22,23 +22,18 @@ def create_drink(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def detail_drink(request, pk):
     drink = get_object_or_404(Drink, pk=pk)
-    serializer = DrinkSerializer(drink)
-    return Response(serializer.data)
-
-@api_view(['PUT'])
-def edit_drink(request, pk):
-    drink = get_object_or_404(Drink, pk=pk)
-    serializer = DrinkSerializer(drink, data=request.data)
-    if serializer.is_valid():
-        serializer.save()
+    if request.method == 'GET':
+        serializer = DrinkSerializer(drink)
         return Response(serializer.data)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(['DELETE'])
-def delete_drink(request, pk):
-    drink = get_object_or_404(Drink, pk=pk)
-    drink.delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
+    elif request.method == 'PUT':
+        serializer = DrinkSerializer(drink, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        drink.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
