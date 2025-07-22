@@ -26,8 +26,8 @@ local_settings.py
 django_cache/
 
 # Migrations
-**/migrations/
-!*/migrations/__init__.py
+#**/migrations/
+#!*/migrations/__init__.py
 
 # Unit test / coverage reports
 htmlcov/

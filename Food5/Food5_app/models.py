@@ -13,20 +13,10 @@ class Dish(models.Model):
     class Meta:
         abstract = True
 
-# Concrete classes inheriting from Dish
-class FirstCourse(Dish):
-    pass
-
 class SecondCourse(Dish):
     pass
 
-class Dessert(Dish):
-    pass
-
 class Drink(Dish):
-    pass
-
-class Bread(Dish):
     pass
 
 class Customer(models.Model):
@@ -35,11 +25,11 @@ class Customer(models.Model):
     email = models.EmailField(unique=True)
 
 class Menu(models.Model):
-    first_course = models.ForeignKey(FirstCourse, on_delete=models.CASCADE)
+    first_course = models.ForeignKey('app_first_course.FirstCourse', on_delete=models.CASCADE)
     second_course = models.ForeignKey(SecondCourse, on_delete=models.CASCADE)
-    dessert = models.ForeignKey(Dessert, on_delete=models.CASCADE)
+    dessert = models.ForeignKey('app_dessert.Dessert', on_delete=models.CASCADE)
     drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
-    bread = models.ForeignKey(Bread, on_delete=models.CASCADE)
+    bread = models.ForeignKey('app_Bread.Bread', on_delete=models.CASCADE)
 
     @property #These are not stored in the database, but are calculated on the fly whenever you access them. This ensures the values are always up-to-date, reflecting any changes to the related dishes or menus
     def purchase_price(self):

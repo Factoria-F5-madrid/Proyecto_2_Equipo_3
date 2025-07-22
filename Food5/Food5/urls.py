@@ -15,18 +15,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('app_drink.urls')),
-    
+    path('bread/', include('app_Bread.urls')),
+    path('first_course/', include('app_first_course.urls')),
+    path('dessert/', include('app_dessert.urls')),
+    path('customer/', include('app_customer.urls')),
+    path('menu/', include('app_menu.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-]
 
-""" When DEBUG = False (in production), Django does not serve media files. This is because:
+""" When DEBUG = False (in production), Django does not serve media files. This is because:path('customer/', include('app_customer.urls'))
 Django’s built-in server is not designed to efficiently or securely serve static/media files in production.
 In production, you should use a proper web server (like Nginx or Apache) to serve files from MEDIA_ROOT.
  """
