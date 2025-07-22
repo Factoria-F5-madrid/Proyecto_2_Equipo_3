@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('app_dessert.urls'))
+    path('dessert/', include('app_dessert.urls'))
 ]
 
 """ When DEBUG = False (in production), Django does not serve media files. This is because:
