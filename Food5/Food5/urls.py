@@ -23,8 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('bread/', include('app_Bread.urls')),
     path('first_course/', include('app_first_course.urls')),
-
-    path('dessert/', include('app_dessert.urls'))
+    path('dessert/', include('app_dessert.urls')),
+    path('customer/', include('app_customer.urls'))
 ]
 
 

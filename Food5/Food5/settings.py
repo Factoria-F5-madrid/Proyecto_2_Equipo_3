@@ -33,10 +33,8 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'app_first_course',
     'rest_framework',
     'Food5_app',
-    'app_Bread',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +44,7 @@ INSTALLED_APPS = [
     'app_Bread',
     'app_first_course',
     'app_dessert',
+    'app_customer'
 ]
 
 MIDDLEWARE = [
