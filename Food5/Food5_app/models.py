@@ -74,3 +74,4 @@ class Order(models.Model):
     @property
     def retail_price(self):
         return sum(menu.retail_price for menu in self.menus.all())
+
