@@ -13,8 +13,6 @@ class Dish(models.Model):
     class Meta:
         abstract = True
 
-class SecondCourse(Dish):
-    pass
 
 class Drink(Dish):
     pass
@@ -26,9 +24,10 @@ class Customer(models.Model):
 
 class Menu(models.Model):
     first_course = models.ForeignKey('app_first_course.FirstCourse', on_delete=models.CASCADE)
-    second_course = models.ForeignKey(SecondCourse, on_delete=models.CASCADE)
+    second_course = models.ForeignKey('app_second_course.SecondCourse', on_delete=models.CASCADE)
     dessert = models.ForeignKey('app_dessert.Dessert', on_delete=models.CASCADE)
     drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
+    bread = models.ForeignKey('app_Bread.Bread', on_delete=models.CASCADE)
     bread = models.ForeignKey('app_Bread.Bread', on_delete=models.CASCADE)
 
     @property #These are not stored in the database, but are calculated on the fly whenever you access them. This ensures the values are always up-to-date, reflecting any changes to the related dishes or menus
@@ -64,4 +63,3 @@ class Order(models.Model):
     @property
     def retail_price(self):
         return sum(menu.retail_price for menu in self.menus.all())
-

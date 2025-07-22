@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
-class Food5AppConfig(AppConfig):
+
+class AppSecondCourseConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'Food5_app'  # This must match the folder name
+    name = 'app_second_course'

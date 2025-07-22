@@ -15,3 +15,8 @@ def crear_dessert(request):
     # GET: devolver formulario vacío para navegador
     serializer = DessertSerializer(context={'request': request})
     return Response(serializer.data)
+
+"""
+Este archivo no contiene vistas.
+Las vistas están distribuidas en las apps individuales del proyecto.
+"""
