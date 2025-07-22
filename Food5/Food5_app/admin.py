@@ -1,8 +1,5 @@
 from django.contrib import admin
-from .models import FirstCourse, SecondCourse, Dessert, Drink, Bread
+from .models import SecondCourse
 
-admin.site.register(FirstCourse)
+# Register the model so it appears in the Django admin dashboard
 admin.site.register(SecondCourse)
-admin.site.register(Dessert)
-admin.site.register(Drink)
-admin.site.register(Bread)
