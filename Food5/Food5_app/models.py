@@ -16,9 +16,6 @@ class Dish(models.Model):
 class SecondCourse(Dish):
     pass
 
-class Dessert(Dish):
-    pass
-
 class Drink(Dish):
     pass
 
@@ -30,7 +27,7 @@ class Customer(models.Model):
 class Menu(models.Model):
     first_course = models.ForeignKey('app_first_course.FirstCourse', on_delete=models.CASCADE)
     second_course = models.ForeignKey(SecondCourse, on_delete=models.CASCADE)
-    dessert = models.ForeignKey(Dessert, on_delete=models.CASCADE)
+    dessert = models.ForeignKey('app_dessert.Dessert', on_delete=models.CASCADE)
     drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
     bread = models.ForeignKey('app_Bread.Bread', on_delete=models.CASCADE)
 
