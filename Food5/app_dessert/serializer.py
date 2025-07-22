@@ -6,14 +6,6 @@ class DessertSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Dessert
-        fields = [
-            'name',
-            'calories',
-            'vegan',
-            'gluten_free',
-            'purchase_price',
-            'retail_price',
-            'picture',
-        ]
+        fields = '__all__'
 
 
