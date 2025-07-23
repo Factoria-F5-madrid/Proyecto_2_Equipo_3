@@ -15,30 +15,3 @@ class Dish(models.Model):
 
 
 
-
-class Customer(models.Model):
-    name = models.CharField(max_length=100)
-    address = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-
-
-
-    @property #These are not stored in the database, but are calculated on the fly whenever you access them. This ensures the values are always up-to-date, reflecting any changes to the related dishes or menus
-    def purchase_price(self):
-        return sum([
-            self.first_course.purchase_price,
-            self.second_course.purchase_price,
-            self.dessert.purchase_price,
-            self.drink.purchase_price,
-            self.bread.purchase_price
-        ])
-
-    @property
-    def retail_price(self):
-        return sum([
-            self.first_course.retail_price,
-            self.second_course.retail_price,
-            self.dessert.retail_price,
-            self.drink.retail_price,
-            self.bread.retail_price
-        ])
