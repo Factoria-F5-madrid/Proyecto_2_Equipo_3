@@ -32,7 +32,9 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
+
     'app_drink',
+    'drf_yasg',
     'rest_framework',
     'Food5_app',
     'django.contrib.admin',
