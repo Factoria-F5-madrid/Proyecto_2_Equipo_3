@@ -21,9 +21,10 @@ from django.conf.urls.static import static  # Import static to serve media files
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('app_drink.urls')),
+    path('drinks/', include('app_drink.urls')),
     path('bread/', include('app_Bread.urls')),
     path('first_course/', include('app_first_course.urls')),
+    path('second_course/', include('app_second_course.urls')),
     path('dessert/', include('app_dessert.urls')),
     path('customer/', include('app_customer.urls')),
     path('menu/', include('app_menu.urls')),

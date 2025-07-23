@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'app_first_course',
     'app_dessert',
     'app_customer',
-    'app_menu'
+    'app_menu',
+     'app_second_course',
+
 ]
 
 MIDDLEWARE = [

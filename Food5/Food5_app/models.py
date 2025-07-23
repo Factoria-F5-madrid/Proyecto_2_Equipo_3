@@ -14,21 +14,14 @@ class Dish(models.Model):
         abstract = True
 
 
-class Drink(Dish):
-    pass
+
 
 class Customer(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
 
-class Menu(models.Model):
-    first_course = models.ForeignKey('app_first_course.FirstCourse', on_delete=models.CASCADE)
-    second_course = models.ForeignKey('app_second_course.SecondCourse', on_delete=models.CASCADE)
-    dessert = models.ForeignKey('app_dessert.Dessert', on_delete=models.CASCADE)
-    drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
-    bread = models.ForeignKey('app_Bread.Bread', on_delete=models.CASCADE)
-    bread = models.ForeignKey('app_Bread.Bread', on_delete=models.CASCADE)
+
 
     @property #These are not stored in the database, but are calculated on the fly whenever you access them. This ensures the values are always up-to-date, reflecting any changes to the related dishes or menus
     def purchase_price(self):
@@ -51,7 +44,7 @@ class Menu(models.Model):
         ])
 
 class Order(models.Model):
-    menus = models.ManyToManyField(Menu)
+    menus = models.ManyToManyField('app_menu.Menu')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     due_date = models.DateTimeField(null=True, blank=True) # menus must be delivered to client on this date
     gotten_date = models.DateTimeField(null=True, blank=True) # order was communicated by client on this date
