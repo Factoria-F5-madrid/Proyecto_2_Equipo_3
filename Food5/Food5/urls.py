@@ -18,6 +18,7 @@ from django.contrib import admin    # Import admin to manage the Django admin in
 from django.urls import path, include   # Import include to include other URL configurations
 from django.conf import settings  
 from django.conf.urls.static import static  # Import static to serve media files during development
+from Food5_app.views import exportAllToCsv  # Import the view for exporting data to CSV
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +30,7 @@ urlpatterns = [
     path('customer/', include('app_customer.urls')),
     path('menu/', include('app_menu.urls')),
     path('order/', include('app_order.urls')),
+    path('export/csv/', exportAllToCsv, name='export_csv'),  # URL for exporting all data to CSV
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
