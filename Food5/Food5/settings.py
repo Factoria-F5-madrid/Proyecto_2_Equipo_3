@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'app_dessert',
     'app_customer',
     'app_menu',
-     'app_second_course',
+    'app_second_course',
+    'app_order',
 
 ]
 
