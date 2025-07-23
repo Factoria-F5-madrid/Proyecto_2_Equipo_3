@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
+    'rest_framework_simplejwt',
     'app_drink',
     'rest_framework',
     'Food5_app',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'app_menu',
     'app_second_course',
     'app_order',
+    'users',
 
 ]
 
@@ -142,6 +144,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',  # Optional: for browsable API
+        'rest_framework.renderers.BrowsableAPIRenderer',  # opcional
     ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
 }

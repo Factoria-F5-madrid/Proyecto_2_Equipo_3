@@ -18,6 +18,8 @@ from django.contrib import admin    # Import admin to manage the Django admin in
 from django.urls import path, include   # Import include to include other URL configurations
 from django.conf import settings  
 from django.conf.urls.static import static  # Import static to serve media files during development
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +31,9 @@ urlpatterns = [
     path('customer/', include('app_customer.urls')),
     path('menu/', include('app_menu.urls')),
     path('order/', include('app_order.urls')),
+    path('users/', include('users.urls')),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair')
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
