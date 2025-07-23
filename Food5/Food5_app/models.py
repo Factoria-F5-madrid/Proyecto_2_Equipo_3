@@ -42,17 +42,3 @@ class Customer(models.Model):
             self.drink.retail_price,
             self.bread.retail_price
         ])
-
-class Order(models.Model):
-    menus = models.ManyToManyField('app_menu.Menu')
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    due_date = models.DateTimeField(null=True, blank=True) # menus must be delivered to client on this date
-    gotten_date = models.DateTimeField(null=True, blank=True) # order was communicated by client on this date
-
-    @property
-    def purchase_price(self):
-        return sum(menu.purchase_price for menu in self.menus.all())
-
-    @property
-    def retail_price(self):
-        return sum(menu.retail_price for menu in self.menus.all())
