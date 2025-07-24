@@ -29,7 +29,7 @@ urlpatterns = [
     path('customer/', include('app_customer.urls')),
     path('menu/', include('app_menu.urls')),
     path('order/', include('app_order.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
 
 """ When DEBUG = False (in production), Django does not serve media files. This is because:path('customer/', include('app_customer.urls'))
