@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Bread
-from .serializer import BreadSerializer
+from .serializers import BreadSerializer
 
 @api_view(['GET'])
 def listar_panes(request):

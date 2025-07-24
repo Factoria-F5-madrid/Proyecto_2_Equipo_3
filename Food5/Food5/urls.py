@@ -20,6 +20,22 @@ from django.conf import settings
 from django.conf.urls.static import static  # Import static to serve media files during development
 from Food5_app.views import exportAllToCsv  # Import the view for exporting data to CSV
 
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Food5 API",
+        default_version='v1',
+        description="Documentación de la API del proyecto Food5",
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('drinks/', include('app_drink.urls')),
@@ -30,7 +46,11 @@ urlpatterns = [
     path('customer/', include('app_customer.urls')),
     path('menu/', include('app_menu.urls')),
     path('order/', include('app_order.urls')),
+
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('export/csv/', exportAllToCsv, name='export_csv'),  # URL for exporting all data to CSV
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

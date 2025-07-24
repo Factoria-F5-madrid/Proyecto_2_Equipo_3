@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Dessert
-from .serializer import DessertSerializer
+from .serializers import DessertSerializer
 
 @api_view(['GET'])
 def listar_postres(request):

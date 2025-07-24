@@ -88,7 +88,7 @@ class DessertAPITest(TestCase):
         self.assertEqual(response.status_code, 204)
         self.assertFalse(Dessert.objects.filter(pk=self.dessert.pk).exists())
 
-from .serializer import DessertSerializer
+from .serializers import DessertSerializer
 
 class DessertSerializerTest(TestCase):
     def test_serializer_validation(self):
