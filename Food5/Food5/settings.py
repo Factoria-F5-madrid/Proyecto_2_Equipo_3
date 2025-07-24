@@ -147,3 +147,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',  # Optional: for browsable API
     ),
 }
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'Food5.exceptions.custom_exception_handler',
+}
