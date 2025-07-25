@@ -23,7 +23,14 @@ export default function Navbar() {
             <Link to="/login" className="nav-link">Login</Link>
           </li>
           <li className="nav-item">
+            {/* 
+          {!user?.isAuthenticated && (
+                                     // solo mostramos el botón register cuando el usuario no está logueado
+            <li className="nav-item">
             <Link to="/register" className="nav-link">Register</Link>
+          </li>
+            )}
+            */}
           </li>
           <li className="nav-item">
             <Link to="/menu" className="nav-link">Menú</Link>
