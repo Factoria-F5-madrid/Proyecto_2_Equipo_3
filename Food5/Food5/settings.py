@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'app_drink',
     'rest_framework',
     'Food5_app',
+    'drf_yasg',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
