@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'api_db_logging.APILoggingMiddleware',  # Add API database logging middleware
 ]
 
 ROOT_URLCONF = 'Food5.urls'
@@ -147,3 +148,37 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',  # Optional: for browsable API
     ),
 }
+
+# API Database logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'api_db_formatter': {
+            'format': '{asctime} - API-DB - {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'api_db_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'api_db_operations.log'),
+            'formatter': 'api_db_formatter',
+        },
+    },
+    'loggers': {
+        'api_db_operations': {
+            'handlers': ['api_db_file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
+
+# Initialize API database logging
+try:
+    from api_db_logging import setup_api_db_logging
+    setup_api_db_logging()
+except ImportError:
+    pass
