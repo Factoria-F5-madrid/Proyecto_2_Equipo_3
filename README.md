@@ -1,98 +1,93 @@
-# Proyecto_2_Equipo_3
-Scrum Master = Andrés Lázaro
+# 🍽️ Food5 – App de Gestión para Empresas de Catering
 
-Product Owner = Ignacio Castillo
+Food5 es una solución web desarrollada para facilitar la administración de empresas de catering. Ofrece funcionalidades completas para manejar productos, pedidos y clientes, integrando una interfaz moderna y una API robusta basada en Django.
 
-API = [Django](https://www.djangoproject.com/) version 5.2.4
+---
 
-negocio = comida
+## ⚙️ Tecnologías Utilizadas
 
-gestion del proyecto [aquí](https://github.com/orgs/Factoria-F5-madrid/projects/25)
+| Frontend        | Backend          | Autenticación       |
+|-----------------|------------------|----------------------|
+| React           | Django            | Login con JWT        |
+| React Router    | Django REST Framework (DRF) | Roles de usuario básicos |
+| Axios           | drf_yasg (Swagger / ReDoc) | —                  |
+
+---
+
+## 🧩 Estructura del Proyecto
+
+- `food5-frontend/`: Aplicación cliente en React
+- `Food5/`: Proyecto Django principal
+- Apps incluidas:
+  - `app_user`
+  - `app_customer`
+  - `app_order`
+  - `app_bread`
+  - `app_dessert`
+  - `app_first_course`
+  - `app_second_course`
+  - `app_drink`
+  - `app_menu`
+
+---
+
+## 🔐 Funcionalidades Principales
+
+- 🚪 Registro y Login de usuarios
+- 📦 Listado de productos
+- 🍞 CRUD completo para "panes" como demostración
+- 📬 Formulario de contacto para empresas interesadas
+- 📊 Panel de administración vía `/admin`
+- 📄 Exportación de datos a CSV
+- 🧾 Documentación automática con Swagger (`/swagger/`) y Redoc (`/redoc/`)
+
+---
+
+## 🚀 Instalación y Ejecución
+
+### 🔧 Backend (Django)
+
+```bash
+# Instala dependencias
+pip install -r requirements.txt
+
+# Ejecuta el servidor
+python manage.py runserver
+
+🖥️ Frontend (React)
+
+# Accede al directorio del frontend
+cd food5-frontend
+
+# Instala dependencias
+npm install
+
+# Ejecuta la app en desarrollo
+npm run dev
 
 
-# 🚀 Proyecto: Sistema de Gestión Personalizado
+🔗 Rutas destacadas (Frontend)
+| Ruta | Componente | 
+| /login | Login | 
+| /register | Registro | 
+| /dashboard | Panel de administración | 
+| /orders | Pedidos | 
+| /productos | Productos | 
+| /contacto | Formulario de contacto | 
 
-![Banner Proyectos](https://github.com/user-attachments/assets/94ecebe4-ceba-47ae-8f3c-af14bdfe8606)
 
-## 📋 Planteamiento
+ Endpoints Principales (API Django)
+Ejemplo usando el modelo Dessert:
+GET     /dessert/                 # Listar todos los postres
+POST    /dessert/crear            # Crear nuevo postre
+GET     /dessert/<id>/            # Ver detalle del postre
+PUT     /dessert/<id>/            # Actualizar postre
+DELETE  /dessert/<id>/            # Eliminar postre
 
-Eres parte de un equipo de desarrollo en una consultora tecnológica especializada en soluciones para pequeñas y medianas empresas. Tu equipo ha sido contactado por un emprendedor local que necesita digitalizar y optimizar la gestión de su negocio.
 
-El cliente puede tener cualquier tipo de negocio: una escuela, una tienda en línea, un gimnasio, un restaurante, etc. El desafío es crear una solución personalizada que se adapte a las necesidades específicas del negocio elegido.
 
-## 🎯 Objetivo
+📘 Documentación de la API
+La documentación se genera automáticamente con Swagger y ReDoc:
+- Swagger UI: 
 
-Desarrollar una API REST y una base de datos SQL que permitan al cliente gestionar eficientemente su negocio, reemplazando los métodos manuales actuales y preparando el negocio para un crecimiento futuro.
 
-## 🛠️ Requisitos Técnicos
-
-1. Base de datos SQL (PostgreSQL, MySQL, etc.)
-2. API REST (usando Flask, FastAPI, Django REST Framework, etc.)
-3. Sistema de autenticación y autorización
-4. Documentación completa de la API
-5. Tests unitarios y de integración
-6. Control de versiones con Git y GitHub
-7. Gestión del proyecto con metodologías ágiles (SCRUM)
-
-## 📅 Plazos
-
-Se estiman dos semanas para el desarrollo del prototipo funcional.
-
-## 📦 Entregables
-
-1. 📊 Diagrama ER de la base de datos
-2. 💻 Repositorio en GitHub con código fuente
-3. 🔗 Documentación de la API (Swagger o similar)
-4. ✅ Suite de tests completa y pasando
-5. 📝 Documento de retrospectiva del proyecto
-6. 📌 Tablero Kanban (Trello, Jira, etc.) con historias de usuario
-
-## 🏆 Niveles de Entrega
-
-### Nivel Esencial 🥉
-
-- Mínimo 3 tablas relacionadas en la base de datos
-- API REST con operaciones CRUD básicas
-- Tests unitarios para cada endpoint
-- Documentación en Markdown
-- Gestión de proyecto con Kanban
-- Variables de entorno para datos sensibles
-- Logging básico
-- Manejo de excepciones simple
-
-### Nivel Medio 🥈
-
-- Estructura de base de datos más compleja (5+ tablas)
-- Documentación interactiva (Swagger)
-- Manejo avanzado de errores con códigos HTTP apropiados
-- Exportación de datos a CSV
-- Filtrado y paginación en endpoints GET
-
-### Nivel Avanzado 🥇
-
-- Autenticación con JWT
-- Roles de usuario y permisos
-- Caché de respuestas para optimizar rendimiento
-- Implementación de websockets para actualizaciones en tiempo real
-
-### Nivel Experto 🏅
-
-- Contenedorización con Docker
-- Despliegue en la nube (AWS, Google Cloud, etc.)
-- Integración con servicios externos (pagos, notificaciones, etc.)
-- Interfaz de usuario básica (web o móvil)
-
-## 💡 Consejos
-
-- Elige un tipo de negocio que te interese y sea realista para un emprendedor local.
-- Piensa en las necesidades específicas de ese negocio al diseñar tu base de datos y API.
-- Mantén la flexibilidad en tu diseño para futuras expansiones o cambios en el negocio.
-- Prioriza la seguridad y la eficiencia en tu implementación.
-
-## 🌟 Competencias:
-- Gestionar eficientemente proyectos de desarrollo con herramientas de control de versiones
-- Ser capaz de desarrollar un programa en Python
-- Diseñar y gestionar bases de datos de manera eficiente
-- Implementar tests para garantizar la calidad del software
-
-¡Buena suerte con tu proyecto! 🍀

@@ -59,17 +59,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Contact Section */}
-      <div
-        className="mt-5 p-4 border rounded"
-        style={{ backgroundColor: '#e3f2fd' }}
-      >
-        <h2 className="text-info">📩 Contacta con nosotros</h2>
-        <p>¿Tienes alguna pregunta o necesitas ayuda? ¡Estamos aquí para ayudarte!</p>
-        <a href="mailto:soporte@food5.com" className="btn btn-outline-primary">
-          Enviar correo a soporte
-        </a>
-      </div>
+
       {/* Testimonios */}
       <div className="mt-5">
         <h2 className="text-secondary mb-4">💬 Lo que dicen nuestros clientes</h2>
