@@ -88,7 +88,7 @@ class FirstCourseAPITest(TestCase):
         self.assertEqual(response.status_code, 204)
         self.assertFalse(FirstCourse.objects.filter(pk=self.first_course.pk).exists())
 
-from .serializer import FirstCourseSerializer
+from .serializers import FirstCourseSerializer
 
 class FirstCourseSerializerTest(TestCase):
     def test_serializer_validation(self):

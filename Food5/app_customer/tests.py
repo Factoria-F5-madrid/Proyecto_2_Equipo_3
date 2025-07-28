@@ -18,19 +18,24 @@ class CustomerModelTest(TestCase):
         # Updated to match the new __str__ method format
         self.assertEqual(str(customer), "Juan Pérez - juan.perez@email.com - Calle Mayor 123, Madrid")
 
-    def test_customer_email_unique(self):
+def test_customer_email_unique(self):
+    """Test that customer email must be unique"""
+    Customer.objects.create(
+        name="Customer 1",
+        email="test@example.com",
+        address="123 Test St"
+    )
+    
+    # Import the specific exception Django raises for database constraints
+    from django.db import IntegrityError
+    
+    # This should raise an IntegrityError, not just any Exception
+    with self.assertRaises(IntegrityError):
         Customer.objects.create(
-            name="Juan Pérez",
-            email="juan.perez@email.com",
-            address="Calle Mayor 123, Madrid"
+            name="Customer 2",
+            email="test@example.com",  # Same email - should fail
+            address="456 Test Ave"
         )
-        # Test that creating another customer with same email raises an error
-        with self.assertRaises(Exception):
-            Customer.objects.create(
-                name="María García",
-                email="juan.perez@email.com",  # Same email
-                address="Calle Menor 456, Barcelona"
-            )
 
 class CustomerAPITest(TestCase):
     def setUp(self):

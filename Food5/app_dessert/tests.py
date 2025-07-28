@@ -3,6 +3,7 @@ from .models import Dessert
 from django.core.files.uploadedfile import SimpleUploadedFile
 from rest_framework.test import APIClient
 from django.urls import reverse
+from .serializers import DessertSerializer
 
 class DessertModelTest(TestCase):
     def test_create_dessert(self):
@@ -88,7 +89,7 @@ class DessertAPITest(TestCase):
         self.assertEqual(response.status_code, 204)
         self.assertFalse(Dessert.objects.filter(pk=self.dessert.pk).exists())
 
-from .serializers import DessertSerializer
+
 
 class DessertSerializerTest(TestCase):
     def test_serializer_validation(self):

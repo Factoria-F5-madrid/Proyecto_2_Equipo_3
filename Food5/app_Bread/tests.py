@@ -88,7 +88,7 @@ class BreadAPITest(TestCase):
         self.assertEqual(response.status_code, 204)
         self.assertFalse(Bread.objects.filter(pk=self.bread.pk).exists())
 
-from .serializer import BreadSerializer
+from .serializers import BreadSerializer
 
 class BreadSerializerTest(TestCase):
     def test_serializer_validation(self):
