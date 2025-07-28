@@ -1,17 +1,18 @@
-// Create: /home/hoodche/F5/Proyecto_2_Equipo_3/Food5/food5-frontend/src/pages/Bread.jsx
-
 import { useState, useEffect } from 'react';
 
 function Bread() {
-  const [breadItems, setBreadItems] = useState([]);
+  const [breadItems, setBreadItems] = useState([]);{/*React Hook useState -useState(initialState)- lets you add a state variable to your component . useState returns an array with exactly two values:
+The current state. During the first render, it will match the initialState you have passed.
+The set function that lets you update the state to a different value and trigger a re-render
+useState is used here for fetching data (storing bread items) loading state, and error messages,on component mount*/}  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    {/*hook useEffect handles the initial data fetch when the component mounts. */}
     const fetchBread = async () => {
       try {
         setLoading(true);
-        // This will work once you have the Django endpoint
         const response = await fetch('http://localhost:8000/bread/');
         
         if (!response.ok) {
