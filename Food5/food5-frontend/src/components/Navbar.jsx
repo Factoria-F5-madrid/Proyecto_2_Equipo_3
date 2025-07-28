@@ -19,27 +19,15 @@ export default function Navbar() {
 
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ms-auto">
-          <li className="nav-item">
-            <Link to="/login" className="nav-link">Login</Link>
-          </li>
-          <li className="nav-item">
-            {/* 
-          {!user?.isAuthenticated && (
-                                     // solo mostramos el botón register cuando el usuario no está logueado
-            <li className="nav-item">
-            <Link to="/register" className="nav-link">Register</Link>
-          </li>
-            )}
-            */}
-          </li>
-          <li className="nav-item">
-            <Link to="/menu" className="nav-link">Menú</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/orders" className="nav-link">Pedidos</Link>
-          </li>
+
           <li className="nav-item">
             <Link to="/" className="nav-link">Home</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/" className="nav-link">Contacto</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/" className="nav-link">Productos</Link>
           </li>
           <li className="nav-item">
             <Link to="/dashboard" className="nav-link">Dashboard</Link>
