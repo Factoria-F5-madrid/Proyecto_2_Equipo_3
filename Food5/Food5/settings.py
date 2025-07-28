@@ -32,11 +32,14 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
+
     'corsheaders',  # Para permitir requests desde React
     'drf_yasg',  # Para la documentación Swagger de la API
+    'app_user',
     'app_drink',
     'rest_framework',
     'Food5_app',
+    'drf_yasg',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'api_db_logging.APILoggingMiddleware',  # Add API database logging middleware
 ]
 
 ROOT_URLCONF = 'Food5.urls'
@@ -149,6 +153,7 @@ REST_FRAMEWORK = {
     ),
 }
 
+
 # CORS settings para desarrollo
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React development server
@@ -157,3 +162,55 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True
+
+# API Database logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'api_db_formatter': {
+            'format': '{asctime} - API-DB - {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'api_db_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'api_db_operations.log'),
+            'formatter': 'api_db_formatter',
+        },
+    },
+    'loggers': {
+        'api_db_operations': {
+            'handlers': ['api_db_file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
+
+# Initialize API database logging
+try:
+    from api_db_logging import setup_api_db_logging
+    setup_api_db_logging()
+except ImportError:
+    pass
+
+AUTH_USER_MODEL = 'app_user.Usuario'
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
+

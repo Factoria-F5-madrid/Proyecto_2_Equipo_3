@@ -37,6 +37,8 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
+    path('user/', include('app_user.urls')),
+
     path('admin/', admin.site.urls),
     path('drinks/', include('app_drink.urls')),
     path('bread/', include('app_Bread.urls')),
@@ -46,15 +48,18 @@ urlpatterns = [
     path('customer/', include('app_customer.urls')),
     path('menu/', include('app_menu.urls')),
     path('order/', include('app_order.urls')),
-
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('export/csv/', exportAllToCsv, name='export_csv'),  # URL for exporting all data to CSV
+
     
     path('api/order/', include('app_order.urls')),  # Esta es la ruta que necesitas
     
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+]
+
 
 
 """ When DEBUG = False (in production), Django does not serve media files. This is because:path('customer/', include('app_customer.urls'))
