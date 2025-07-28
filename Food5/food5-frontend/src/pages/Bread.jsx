@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 function Bread() {
   const [breadItems, setBreadItems] = useState([]);{/*React Hook useState -useState(initialState)- lets you add a state variable to your component . useState returns an array with exactly two values:
 The current state. During the first render, it will match the initialState you have passed.
-The set function that lets you update the state to a different value and trigger a re-render
+The set function that lets you update the state to a different value and trigger a re-render. this function is not explicitly defined by you - it's automatically created by React's useState hook.
 useState is used here for fetching data (storing bread items) loading state, and error messages,on component mount*/}  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
