@@ -32,6 +32,9 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
+
+    'corsheaders',  # Para permitir requests desde React
+    'drf_yasg',  # Para la documentación Swagger de la API
     'app_user',
     'app_drink',
     'rest_framework',
@@ -54,6 +57,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -149,6 +153,16 @@ REST_FRAMEWORK = {
     ),
 }
 
+
+# CORS settings para desarrollo
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React development server
+    "http://127.0.0.1:3000",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+
 # API Database logging configuration
 LOGGING = {
     'version': 1,
@@ -199,3 +213,4 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
+
