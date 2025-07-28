@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import WelcomeCard from "../components/WelcomeCard";

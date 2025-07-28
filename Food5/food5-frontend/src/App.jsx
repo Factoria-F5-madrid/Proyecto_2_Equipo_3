@@ -7,15 +7,14 @@ import Bread from './pages/Bread';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
+    <BrowserRouter> {/*enables single-page application (SPA) behavior, allowing users to navigate between different views without triggering full page reloads. it maintains application state and provides a seamless user experience while your frontend makes API calls to your Python backend.*/}
+      <Navbar /> {/*component positioned outside the <Routes> container will remain persistent across all navigation*/}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/bread" element={<Bread />} />
-        {/* Add a catch-all route for unmatched URLs */}
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} /> {/* Adds a catch-all route for unmatched URLs. handles cases where users might bookmark URLs or share links that don't exist. Instead of getting a server error from your Python backend, users get a friendly 404 page that keeps them within your application ecosystem. */}
       </Routes>
     </BrowserRouter>
   );
