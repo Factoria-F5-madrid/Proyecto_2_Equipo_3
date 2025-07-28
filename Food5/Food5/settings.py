@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
-
+    'app_user',
     'app_drink',
     'rest_framework',
     'Food5_app',
@@ -182,3 +182,20 @@ try:
     setup_api_db_logging()
 except ImportError:
     pass
+
+AUTH_USER_MODEL = 'app_user.Usuario'
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}

@@ -1,4 +1,3 @@
-// src/pages/Register.jsx
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
@@ -7,10 +6,11 @@ export default function Register() {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post('http://localhost:8000/api/register/', data); // ajusta ruta si es distinta
-      alert('Registro exitoso. Ahora puedes iniciar sesión.');
+      await axios.post('http://localhost:8000/api/register/', data);
+      alert('✅ Registro exitoso. Ahora puedes iniciar sesión.');
     } catch (err) {
-      alert('Hubo un error al registrarse. Revisa los datos e inténtalo de nuevo.');
+      console.error(err);
+      alert('❌ Hubo un error al registrarse. Revisa los datos e inténtalo de nuevo.');
     }
   };
 
@@ -19,18 +19,34 @@ export default function Register() {
       <h2 className="mb-4 text-center">Registro</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
-          <label className="form-label">Usuario</label>
-          <input {...register('username')} className="form-control" placeholder="Nombre de usuario" />
+          <label className="form-label">Nombre</label>
+          <input
+            {...register('nombre')}
+            className="form-control"
+            placeholder="Tu nombre visible"
+          />
         </div>
         <div className="mb-3">
           <label className="form-label">Correo</label>
-          <input {...register('email')} type="email" className="form-control" placeholder="Email" />
+          <input
+            {...register('email')}
+            type="email"
+            className="form-control"
+            placeholder="ejemplo@email.com"
+          />
         </div>
         <div className="mb-3">
           <label className="form-label">Contraseña</label>
-          <input {...register('password')} type="password" className="form-control" placeholder="Contraseña" />
+          <input
+            {...register('password')}
+            type="password"
+            className="form-control"
+            placeholder="••••••••"
+          />
         </div>
-        <button type="submit" className="btn btn-success w-100">Crear cuenta</button>
+        <button type="submit" className="btn btn-success w-100">
+          Crear cuenta
+        </button>
       </form>
     </div>
   );

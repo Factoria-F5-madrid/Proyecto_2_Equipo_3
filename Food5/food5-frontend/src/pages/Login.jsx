@@ -7,12 +7,20 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post('http://localhost:8000/api/token/', data);
+      const res = await axios.post('http://localhost:8000/api/token/', {
+        email: data.email,
+        password: data.password,
+      });
+
       localStorage.setItem('access', res.data.access);
       localStorage.setItem('refresh', res.data.refresh);
+
       alert('Inicio de sesión exitoso');
+      // Puedes redirigir al usuario, por ejemplo:
+      // window.location.href = '/dashboard';
     } catch (err) {
-      alert('Error en el login. Verifica usuario y contraseña.');
+      console.error(err);
+      alert('Error en el login. Verifica correo y contraseña.');
     }
   };
 
@@ -21,14 +29,28 @@ export default function Login() {
       <h2 className="mb-4 text-center">Iniciar sesión</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
-          <label className="form-label">Usuario</label>
-          <input {...register('username')} className="form-control" placeholder="Usuario" />
+          <label className="form-label">Correo electrónico</label>
+          <input
+            {...register('email')}
+            type="email"
+            className="form-control"
+            placeholder="Correo electrónico"
+            required
+          />
         </div>
         <div className="mb-3">
           <label className="form-label">Contraseña</label>
-          <input {...register('password')} type="password" className="form-control" placeholder="Contraseña" />
+          <input
+            {...register('password')}
+            type="password"
+            className="form-control"
+            placeholder="Contraseña"
+            required
+          />
         </div>
-        <button type="submit" className="btn btn-primary w-100">Entrar</button>
+        <button type="submit" className="btn btn-primary w-100">
+          Entrar
+        </button>
       </form>
     </div>
   );
