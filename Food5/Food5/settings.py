@@ -10,10 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent #points to the root directory of your Django project (the one containing manage.py).__file__ is the path to the current file (settings.py).parent.parent goes up two directories:
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,21 +27,36 @@ SECRET_KEY = 'django-insecure-v-(_9a)ugay(!4@-9n((b3a-_f+71^j=yg+wttih51y3gpgpft
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
-
 INSTALLED_APPS = [
+
+    'corsheaders',  # Para permitir requests desde React
+    'drf_yasg',  # Para la documentación Swagger de la API
+    'app_user',
+    'app_drink',
+    'rest_framework',
+    'Food5_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app_Bread',
+    'app_first_course',
+    'app_dessert',
+    'app_customer',
+    'app_menu',
+    'app_second_course',
+    'app_order',
+
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -47,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'api_db_logging.APILoggingMiddleware',  # Add API database logging middleware
 ]
 
 ROOT_URLCONF = 'Food5.urls'
@@ -74,11 +92,14 @@ WSGI_APPLICATION = 'Food5.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Cambia el motor a postgresql_psycopg2
+        'NAME': os.getenv('SUPABASE_DB_NAME'),          # Nombre de tu base de datos
+        'USER': os.getenv('SUPABASE_DB_USER'),          # Usuario de tu base de datos
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # Contraseña del usuario
+        'HOST': os.getenv('DB_HOST'),          # Dirección del servidor de la base de datos (e.g., 'localhost')
+        'PORT': os.getenv('DB_PORT'),          # Puerto de la base de datos (por defecto es 3306 para MySQL)
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -120,3 +141,75 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',  # Optional: for browsable API
+    ),
+}
+
+
+# CORS settings para desarrollo
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React development server
+    "http://127.0.0.1:3000",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+
+# API Database logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'api_db_formatter': {
+            'format': '{asctime} - API-DB - {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'api_db_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'api_db_operations.log'),
+            'formatter': 'api_db_formatter',
+        },
+    },
+    'loggers': {
+        'api_db_operations': {
+            'handlers': ['api_db_file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
+
+# Initialize API database logging
+try:
+    from api_db_logging import setup_api_db_logging
+    setup_api_db_logging()
+except ImportError:
+    pass
+
+AUTH_USER_MODEL = 'app_user.Usuario'
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
+
