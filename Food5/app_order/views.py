@@ -8,6 +8,7 @@ from .serializers import OrderSerializer
 def listar_orders(request):
     orders = Order.objects.all()
     serializer = OrderSerializer(orders, many=True)
+    
     return Response(serializer.data)
 
 @api_view(['POST'])
