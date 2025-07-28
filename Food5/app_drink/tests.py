@@ -88,7 +88,7 @@ class DrinkAPITest(TestCase):
         self.assertEqual(response.status_code, 204)
         self.assertFalse(Drink.objects.filter(pk=self.drink.pk).exists())
 
-from .serializer import DrinkSerializer
+from .serializers import DrinkSerializer
 
 class DrinkSerializerTest(TestCase):
     def test_serializer_validation(self):
@@ -100,5 +100,5 @@ class DrinkSerializerTest(TestCase):
             'retail_price': 3.50,
             'picture': None
         }
-        serializer = DrinkSerializer(data=data)
-        self.assertTrue(serializer.is_valid(), serializer.errors)
+        serializers = DrinkSerializer(data=data)
+        self.assertTrue(serializers.is_valid(), serializers.errors)
