@@ -14,85 +14,80 @@ gestion del proyecto [aquí](https://github.com/orgs/Factoria-F5-madrid/projects
 
 ![Banner Proyectos](https://github.com/user-attachments/assets/94ecebe4-ceba-47ae-8f3c-af14bdfe8606)
 
-## 📋 Planteamiento
+# 📄 Retrospectiva del Proyecto – Food5
 
-Eres parte de un equipo de desarrollo en una consultora tecnológica especializada en soluciones para pequeñas y medianas empresas. Tu equipo ha sido contactado por un emprendedor local que necesita digitalizar y optimizar la gestión de su negocio.
+## 1. Información General
+- **Nombre del proyecto:** Food5. Proyecto 2 del bootcamp de IA de F5  
+- **Fecha de este documento:** 28-07-2025  
+- **Duración del proyecto:** 3 semanas  
+- **Equipo participante:** Ignacio Castillo, Andrés Lázaro, Mónica Gómez, Ümit Güngör, Teo Ramos
 
-El cliente puede tener cualquier tipo de negocio: una escuela, una tienda en línea, un gimnasio, un restaurante, etc. El desafío es crear una solución personalizada que se adapte a las necesidades específicas del negocio elegido.
+---
 
-## 🎯 Objetivo
+## 2. Objetivos del Proyecto
+El objetivo del proyecto fue desarrollar un sistema destinado a ayudar al dueño de una microempresa de catering a gestionar su operación de forma más eficiente.  
+El sistema debía permitir, a través de una **base de datos estructurada**, realizar todas las operaciones **CRUD** necesarias para manejar el inventario de la empresa, incluyendo entidades clave como **platos, menús, pedidos y clientes**.  
+Esta base de datos serviría como núcleo del sistema, permitiendo almacenar, consultar, modificar y relacionar correctamente toda la información del negocio, y facilitando así una administración ágil, segura y estructurada.
 
-Desarrollar una API REST y una base de datos SQL que permitan al cliente gestionar eficientemente su negocio, reemplazando los métodos manuales actuales y preparando el negocio para un crecimiento futuro.
+---
 
-## 🛠️ Requisitos Técnicos
+## 3. Resultados Alcanzados
+El proyecto alcanzó una implementación funcional con múltiples características avanzadas:
 
-1. Base de datos SQL (PostgreSQL, MySQL, etc.)
-2. API REST (usando Flask, FastAPI, Django REST Framework, etc.)
-3. Sistema de autenticación y autorización
-4. Documentación completa de la API
-5. Tests unitarios y de integración
-6. Control de versiones con Git y GitHub
-7. Gestión del proyecto con metodologías ágiles (SCRUM)
+- ✅ Backend modular construido en Django  
+- ✅ API REST bien estructurada, documentada con **Swagger**  
+- ✅ Frontend desacoplado y conectado desde la carpeta `food5-frontend`  
+- ✅ Estructura de base de datos sólida y coherente  
+- ✅ Implementación de **tests automáticos**  
+- ✅ Integración con base de datos remota **Supabase**  
+- ✅ Funcionalidad para **exportar datos a CSV**, útil para reportes, backups o migración de información
 
-## 📅 Plazos
+---
 
-Se estiman dos semanas para el desarrollo del prototipo funcional.
+## 4. ¿Qué funcionó bien?
 
-## 📦 Entregables
+- ✅ **Modularidad del sistema:** Separación por apps facilitó el trabajo en paralelo y la organización del código  
+- ✅ **API documentada con Swagger:** Facilita consumo e integración por otros desarrolladores  
+- ✅ **Exportación a CSV:** Permite extracción útil para análisis o informes  
+- ✅ **Conexión con Supabase:** Aporta escalabilidad y arquitectura moderna  
+- ✅ **Tests automáticos:** Aseguran calidad y permiten refactorizaciones con confianza  
+- ✅ **Arquitectura desacoplada (frontend/backend):** Permite independencia en desarrollo y despliegue
 
-1. 📊 Diagrama ER de la base de datos
-2. 💻 Repositorio en GitHub con código fuente
-3. 🔗 Documentación de la API (Swagger o similar)
-4. ✅ Suite de tests completa y pasando
-5. 📝 Documento de retrospectiva del proyecto
-6. 📌 Tablero Kanban (Trello, Jira, etc.) con historias de usuario
+---
 
-## 🏆 Niveles de Entrega
+## 5. ¿Qué no funcionó tan bien?
 
-### Nivel Esencial 🥉
+ ⚠️ **Exceso de fragmentación de apps:** Crear una app por tipo de plato (`bread`, `dessert`, etc.) generó redundancia y duplicación de lógica  
+ ⚠️ **Dificultades técnicas con relaciones de modelos:**  
+  Django no permite, dentro de sus modelos, mantener una lista de objetos de diferente tipo que hereden de una clase común (`Dish`), como sí lo permite Python.  
+  Esto se debe a que los modelos de Django también representan **tablas en bases de datos relacionales**, por lo que fue necesario crear un modelo adicional con una `ForeignKey` hacia la tabla `Order`, 
+  donde se deseaba almacenar dicha lista.  
+ ⚠️ **Dificultades con migraciones:** Al trabajar cada desarrollador en ramas diferentes, se generaron conflictos en migraciones que costó resolver  
+ ⚠️ **Desperdicio de abstracciones reutilizables:** La lógica compartida entre tipos de platos pudo haberse centralizado en una sola app más genérica
 
-- Mínimo 3 tablas relacionadas en la base de datos
-- API REST con operaciones CRUD básicas
-- Tests unitarios para cada endpoint
-- Documentación en Markdown
-- Gestión de proyecto con Kanban
-- Variables de entorno para datos sensibles
-- Logging básico
-- Manejo de excepciones simple
+---
 
-### Nivel Medio 🥈
+## 6. Lecciones Aprendidas
 
-- Estructura de base de datos más compleja (5+ tablas)
-- Documentación interactiva (Swagger)
-- Manejo avanzado de errores con códigos HTTP apropiados
-- Exportación de datos a CSV
-- Filtrado y paginación en endpoints GET
+ 📌 Documentar APIs con Swagger desde el principio mejora la comunicación técnica  
+ 📌 La exportación de datos es una funcionalidad muy útil para usuarios reales y debe considerarse desde el diseño inicial  
+ 📌 La modularidad es valiosa, pero debe mantenerse con equilibrio para evitar sobreestructuración  
+ 📌 El uso de herramientas externas (Supabase, Swagger, CSV, tests) eleva el nivel profesional del proyecto, pero requiere integración coherente desde el diseño
 
-### Nivel Avanzado 🥇
+---
 
-- Autenticación con JWT
-- Roles de usuario y permisos
-- Caché de respuestas para optimizar rendimiento
-- Implementación de websockets para actualizaciones en tiempo real
+## 7. Acciones a Tomar / Plan de Mejora
 
-### Nivel Experto 🏅
+ 🔄 **Unificar modelos de platos:** Consolidar apps similares en una sola (`app_dish`), diferenciando con un campo `tipo`  
+ 🧪 **Aumentar cobertura de tests**, especialmente para escenarios más complejos  
+ 📚 **Documentar el uso de Supabase y exportación a CSV** en una guía técnica  
+ 🔍 **Revisar relaciones complejas en ORM Django:** Considerar uso de `Abstract Models`, `GenericForeignKey` o `Proxy Models` para mayor flexibilidad
 
-- Contenedorización con Docker
-- Despliegue en la nube (AWS, Google Cloud, etc.)
-- Integración con servicios externos (pagos, notificaciones, etc.)
-- Interfaz de usuario básica (web o móvil)
+---
 
-## 💡 Consejos
+## 8. Conclusión
+El proyecto **Food5** se desarrolló con una arquitectura moderna, buenas prácticas de desarrollo y herramientas profesionales.  
+La combinación de **Django, React, Supabase, API REST, Swagger, testing y exportación a CSV** demuestra un enfoque sólido, funcional y preparado para escalar.  
+A pesar de algunos problemas en el modelado inicial, el sistema alcanzó un estado robusto y deja al equipo con aprendizajes clave para futuras implementaciones.
 
-- Elige un tipo de negocio que te interese y sea realista para un emprendedor local.
-- Piensa en las necesidades específicas de ese negocio al diseñar tu base de datos y API.
-- Mantén la flexibilidad en tu diseño para futuras expansiones o cambios en el negocio.
-- Prioriza la seguridad y la eficiencia en tu implementación.
-
-## 🌟 Competencias:
-- Gestionar eficientemente proyectos de desarrollo con herramientas de control de versiones
-- Ser capaz de desarrollar un programa en Python
-- Diseñar y gestionar bases de datos de manera eficiente
-- Implementar tests para garantizar la calidad del software
-
-¡Buena suerte con tu proyecto! 🍀
+---
