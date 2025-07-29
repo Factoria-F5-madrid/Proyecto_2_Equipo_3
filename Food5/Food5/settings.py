@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
-import os
+import os, sys
 
 from pathlib import Path
 
@@ -89,17 +89,29 @@ WSGI_APPLICATION = 'Food5.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Cambia el motor a postgresql_psycopg2
-        'NAME': os.getenv('SUPABASE_DB_NAME'),          # Nombre de tu base de datos
-        'USER': os.getenv('SUPABASE_DB_USER'),          # Usuario de tu base de datos
-        'PASSWORD': os.getenv('DB_PASSWORD'),  # Contraseña del usuario
-        'HOST': os.getenv('DB_HOST'),          # Dirección del servidor de la base de datos (e.g., 'localhost')
-        'PORT': os.getenv('DB_PORT'),          # Puerto de la base de datos (por defecto es 3306 para MySQL)
+if 'test' in sys.argv: #The sys.argv list contains the command-line arguments passed to your Python script when it starts, and this code specifically looks for the presence of the string 'test' among those arguments.
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Cambia el motor a postgresql_psycopg2
+            'NAME': os.getenv('TEST_DB_NAME'),          # Nombre de tu base de datos
+            'USER': os.getenv('TEST_DB_USER'),          # Usuario de tu base de datos
+            'PASSWORD': os.getenv('TEST_DB_PASSWORD'),  # Contraseña del usuario
+            'HOST': os.getenv('TEST_DB_HOST'),          # Dirección del servidor de la base de datos (e.g., 'localhost')
+            'PORT': os.getenv('TEST_DB_PORT'),          # Puerto de la base de datos (por defecto es 3306 para MySQL)
+        }
     }
-}
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Cambia el motor a postgresql_psycopg2
+            'NAME': os.getenv('SUPABASE_DB_NAME'),          # Nombre de tu base de datos
+            'USER': os.getenv('SUPABASE_DB_USER'),          # Usuario de tu base de datos
+            'PASSWORD': os.getenv('DB_PASSWORD'),  # Contraseña del usuario
+            'HOST': os.getenv('DB_HOST'),          # Dirección del servidor de la base de datos (e.g., 'localhost')
+            'PORT': os.getenv('DB_PORT'),          # Puerto de la base de datos (por defecto es 3306 para MySQL)
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
