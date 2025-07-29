@@ -6,7 +6,7 @@ Product Owner = Ignacio Castillo
 API = [Django](https://www.djangoproject.com/) version 5.2.4
 
 negocio = comida
-
+adf
 gestion del proyecto [aquí](https://github.com/orgs/Factoria-F5-madrid/projects/25)
 
 
