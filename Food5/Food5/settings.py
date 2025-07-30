@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
-import os, sys
+import os, sys, tempfile
 
 from pathlib import Path
 
@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'Food5.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 if 'test' in sys.argv: #The sys.argv list contains the command-line arguments passed to your Python script when it starts, and this code specifically looks for the presence of the string 'test' among those arguments.
-    DATABASES = {
+    DATABASES = {# use a local test database so django removes it easily without warnings after tests are done
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Cambia el motor a postgresql_psycopg2
             'NAME': os.getenv('TEST_DB_NAME'),          # Nombre de tu base de datos
@@ -100,6 +100,18 @@ if 'test' in sys.argv: #The sys.argv list contains the command-line arguments pa
             'PORT': os.getenv('TEST_DB_PORT'),          # Puerto de la base de datos (por defecto es 3306 para MySQL)
         }
     }
+
+    # Use temporary directory for test media files
+    MEDIA_ROOT = tempfile.mkdtemp()
+    
+    # Disable migrations for faster tests
+    class DisableMigrations:
+        def __contains__(self, item):
+            return True
+        def __getitem__(self, item):
+            return None
+    
+    MIGRATION_MODULES = DisableMigrations()
 
 else:
     DATABASES = {
@@ -112,6 +124,8 @@ else:
             'PORT': os.getenv('DB_PORT'),          # Puerto de la base de datos (por defecto es 3306 para MySQL)
         }
     }
+    # Use permanent media directory for development/production
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -155,7 +169,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
