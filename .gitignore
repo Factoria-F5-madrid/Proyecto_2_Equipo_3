@@ -1,6 +1,7 @@
 # Ignore all dotfiles (hidden files and directories) except this one
 .* 
 !.gitignore
+!.coveragerc
 # Byte-compiled / optimized / DLL files
 __pycache__/
 */pyc
